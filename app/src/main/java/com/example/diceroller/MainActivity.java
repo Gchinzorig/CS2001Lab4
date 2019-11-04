@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -56,16 +57,74 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    private String numberInString;
+    private String takeUserInput;
+    private int score;
+    private int number;
+    private TextView UG;
 
     public void on_button_click(View view)
     {
+        diceRoll();
+    }
+    public void on_icebreaker_click(View view)
+    {
+        icebreaker();
+    }
+
+    public void diceRoll()
+    {
+        roll_the_dice();
         TextView tv = this.findViewById(R.id.ClickButton);
-        Random r = new Random();
-
-        int number = r.nextInt(7);
-        String numberInString = Integer.toString(number);
-
         tv.setText(numberInString);
+        UserInput();
+        UserGuess();
+    }
 
+    public void icebreaker()
+    {
+        roll_the_dice();
+        number = number -1;
+        TextView IceBreaker_Button = this.findViewById(R.id.icebreakerButton);
+        ArrayList<String> questions = new ArrayList<String>();
+
+        questions.add("If you could go anywhere in the world, where would you go?");
+        questions.add("If you were stranded on a desert island, what three things would you want to take with you?");
+        questions.add("If you could eat only one food for the rest of your life, what would that be?");
+        questions.add("If you won a million dollars, what is the first thing you would buy?");
+        questions.add("If you could spaned the day with one fictional character, who would it be?");
+        questions.add("If you found a magic lantern and a genie gave you three wishes, what would you wish?");
+
+        IceBreaker_Button.setText(questions.get(number));
+    }
+
+    public void roll_the_dice()
+    {
+        Random r = new Random();
+        number = r.nextInt(6) +1;
+        numberInString = Integer.toString(number);
+    }
+
+    public void UserInput()
+    {
+        EditText userInput = this.findViewById(R.id.user_input);
+        takeUserInput = userInput.getText().toString();
+    }
+
+    public void UserGuess() {
+        UG = this.findViewById(R.id.congratulations);
+
+        if (takeUserInput.equals(numberInString))
+        {
+            UG.setText("Congratulation!");
+            score++;
+        }
+
+        else
+        {
+            UG.setText(" ");
+        }
+        TextView Score = this.findViewById(R.id.Score_id);
+        Score.setText(Integer.toString(score));
     }
 }

@@ -8,17 +8,82 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
+    <EditText
+        android:id="@+id/user_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:editable="true"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:hint="Enter Your Guess"
+        android:inputType="number"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ClickButton"
+        app:layout_constraintVertical_bias="0.744" />
+
     <Button
         android:id="@+id/ClickButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="on_button_click"
-        android:text="Roll the Dice"
+        android:text="I am feeling lucky"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.387" />
+
+    <TextView
+        android:id="@+id/congratulations"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="UserGuess"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/ClickButton"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Score_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.065" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Score"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/Score_id"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.042"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.666" />
+
+    <Button
+        android:id="@+id/icebreakerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="on_icebreaker_click"
+        android:text="Let's play D-ICEBREAKERS"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/user_input"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ClickButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
