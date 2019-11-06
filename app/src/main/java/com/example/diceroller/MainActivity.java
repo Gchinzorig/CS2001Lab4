@@ -1,10 +1,12 @@
 package com.example.diceroller;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -34,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        Intent it = getIntent();
+        rule = it.getStringExtra("rule");
     }
 
     @Override
@@ -54,13 +59,13 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
     private String numberInString;
     private String takeUserInput;
     private int score;
     private int number;
+    private String rule;
     private TextView UG;
 
     public void on_button_click(View view)
@@ -72,9 +77,13 @@ public class MainActivity extends AppCompatActivity {
         icebreaker();
     }
 
-    public void diceRoll()
+    public void on_newIcebreaker_click(View view)
     {
-        roll_the_dice();
+        Intent intent = new Intent(this, Activity2.class);
+        startActivity(intent);
+    }
+    public void diceRoll() {
+        roll_the_dice(6);
         TextView tv = this.findViewById(R.id.ClickButton);
         tv.setText(numberInString);
         UserInput();
@@ -83,9 +92,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void icebreaker()
     {
-        roll_the_dice();
-        number = number -1;
+
         TextView IceBreaker_Button = this.findViewById(R.id.icebreakerButton);
+
         ArrayList<String> questions = new ArrayList<String>();
 
         questions.add("If you could go anywhere in the world, where would you go?");
@@ -95,13 +104,21 @@ public class MainActivity extends AppCompatActivity {
         questions.add("If you could spaned the day with one fictional character, who would it be?");
         questions.add("If you found a magic lantern and a genie gave you three wishes, what would you wish?");
 
+        if(rule != null) {
+            questions.add(rule);
+        }
+
+        roll_the_dice(questions.size());
+        number = number -1;
+
         IceBreaker_Button.setText(questions.get(number));
     }
 
-    public void roll_the_dice()
+
+    public void roll_the_dice(int boundary)
     {
         Random r = new Random();
-        number = r.nextInt(6) +1;
+        number = r.nextInt(boundary) +1;
         numberInString = Integer.toString(number);
     }
 
