@@ -38,19 +38,13 @@ public class Activity2 extends AppCompatActivity {
 
     public void cancel_on_click(View view)
     {
-        go_to_Main();
+        finish();
     }
 
-    public void go_to_Main()
-    {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
-    public void sendData(String rule)
+    public void sendData(String newRule)
     {
         Intent it = new Intent(this, MainActivity.class);
-        it.putExtra("rule", rule);
+        it.putExtra("rule", newRule);
         startActivity(it);
     }
 

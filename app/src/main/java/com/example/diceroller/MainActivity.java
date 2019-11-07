@@ -37,8 +37,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        questions.add("If you could go anywhere in the world, where would you go?");
+        questions.add("If you were stranded on a desert island, what three things would you want to take with you?");
+        questions.add("If you could eat only one food for the rest of your life, what would that be?");
+        questions.add("If you won a million dollars, what is the first thing you would buy?");
+        questions.add("If you could spend the day with one fictional character, who would it be?");
+        questions.add("If you found a magic lantern and a genie gave you three wishes, what would you wish?");
+
         Intent it = getIntent();
-        rule = it.getStringExtra("rule");
+        newRule = it.getStringExtra("rule");
+        if(newRule !=null)
+        {
+            questions.add(newRule);
+        }
     }
 
     @Override
@@ -65,8 +76,9 @@ public class MainActivity extends AppCompatActivity {
     private String takeUserInput;
     private int score;
     private int number;
-    private String rule;
+    private String newRule;
     private TextView UG;
+    private ArrayList<String> questions = new ArrayList<String>();
 
     public void on_button_click(View view)
     {
@@ -74,39 +86,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void on_icebreaker_click(View view)
     {
-        icebreaker();
-    }
-
-    public void on_newIcebreaker_click(View view)
-    {
-        Intent intent = new Intent(this, Activity2.class);
-        startActivity(intent);
-    }
-    public void diceRoll() {
-        roll_the_dice(6);
-        TextView tv = this.findViewById(R.id.ClickButton);
-        tv.setText(numberInString);
-        UserInput();
-        UserGuess();
-    }
-
-    public void icebreaker()
-    {
-
         TextView IceBreaker_Button = this.findViewById(R.id.icebreakerButton);
-
-        ArrayList<String> questions = new ArrayList<String>();
-
-        questions.add("If you could go anywhere in the world, where would you go?");
-        questions.add("If you were stranded on a desert island, what three things would you want to take with you?");
-        questions.add("If you could eat only one food for the rest of your life, what would that be?");
-        questions.add("If you won a million dollars, what is the first thing you would buy?");
-        questions.add("If you could spaned the day with one fictional character, who would it be?");
-        questions.add("If you found a magic lantern and a genie gave you three wishes, what would you wish?");
-
-        if(rule != null) {
-            questions.add(rule);
-        }
 
         roll_the_dice(questions.size());
         number = number -1;
@@ -114,6 +94,19 @@ public class MainActivity extends AppCompatActivity {
         IceBreaker_Button.setText(questions.get(number));
     }
 
+    public void on_newIcebreaker_click(View view)
+    {
+        Intent intent = new Intent(this, Activity2.class);
+        startActivity(intent);
+    }
+    public void diceRoll()
+    {
+        roll_the_dice(6);
+        TextView tv = this.findViewById(R.id.ClickButton);
+        tv.setText(numberInString);
+        UserInput();
+        UserGuess();
+    }
 
     public void roll_the_dice(int boundary)
     {
