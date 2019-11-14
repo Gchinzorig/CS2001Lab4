@@ -37,19 +37,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        questions.add("If you could go anywhere in the world, where would you go?");
-        questions.add("If you were stranded on a desert island, what three things would you want to take with you?");
-        questions.add("If you could eat only one food for the rest of your life, what would that be?");
-        questions.add("If you won a million dollars, what is the first thing you would buy?");
-        questions.add("If you could spend the day with one fictional character, who would it be?");
-        questions.add("If you found a magic lantern and a genie gave you three wishes, what would you wish?");
+        InitializeQuestions();
 
-        Intent it = getIntent();
-        newRule = it.getStringExtra("rule");
-        if(newRule !=null)
-        {
-            questions.add(newRule);
-        }
+        addNewQuestion();
     }
 
     @Override
@@ -98,6 +88,24 @@ public class MainActivity extends AppCompatActivity {
     {
         Intent intent = new Intent(this, Activity2.class);
         startActivity(intent);
+    }
+    public void InitializeQuestions()
+    {
+        questions.add("If you could go anywhere in the world, where would you go?");
+        questions.add("If you were stranded on a desert island, what three things would you want to take with you?");
+        questions.add("If you could eat only one food for the rest of your life, what would that be?");
+        questions.add("If you won a million dollars, what is the first thing you would buy?");
+        questions.add("If you could spend the day with one fictional character, who would it be?");
+        questions.add("If you found a magic lantern and a genie gave you three wishes, what would you wish?");
+    }
+    public void addNewQuestion()
+    {
+        Intent it = getIntent();
+        newRule = it.getStringExtra("rule");
+        if(newRule !=null)
+        {
+            questions.add(newRule);
+        }
     }
     public void diceRoll()
     {
